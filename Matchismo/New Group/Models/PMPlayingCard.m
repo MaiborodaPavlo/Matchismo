@@ -27,6 +27,8 @@
     return [[self rankStrings] count] - 1;
 }
 
+#pragma mark - Setters&Getters
+
 - (NSString *) suit {
     
     return _suit ? _suit : @"?";
@@ -46,10 +48,28 @@
     }
 }
 
+#pragma mark - Override
+
 - (NSString *) contents {
     
     NSArray *ranks = [PMPlayingCard rankStrings];
     return [ranks[self.rank] stringByAppendingString: self.suit];
+}
+
+- (int)match:(NSArray *)otherCards
+{
+    int score = 0;
+    
+    if ([otherCards count] == 1) {
+        PMPlayingCard *otherCard = [otherCards firstObject];
+        if ([self.suit isEqualToString: otherCard.suit]) {
+            score = 1;
+        } else if (self.rank == otherCard.rank) {
+            score = 4;
+        }
+    }
+    
+    return score;
 }
 
 @end
