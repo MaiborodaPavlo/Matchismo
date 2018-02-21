@@ -13,6 +13,10 @@
 		E917D679203D9CFE00C8F87B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E917D678203D9CFE00C8F87B /* Assets.xcassets */; };
 		E917D67C203D9CFE00C8F87B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E917D67A203D9CFE00C8F87B /* LaunchScreen.storyboard */; };
 		E917D67F203D9CFE00C8F87B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E917D67E203D9CFE00C8F87B /* main.m */; };
+		E917D68B203DAC0A00C8F87B /* PMCard.m in Sources */ = {isa = PBXBuildFile; fileRef = E917D68A203DAC0A00C8F87B /* PMCard.m */; };
+		E917D68E203DAC6000C8F87B /* PMPlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = E917D68D203DAC6000C8F87B /* PMPlayingCard.m */; };
+		E917D691203DAFED00C8F87B /* PMDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = E917D690203DAFED00C8F87B /* PMDeck.m */; };
+		E917D694203DB20800C8F87B /* PMPlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = E917D693203DB20800C8F87B /* PMPlayingCardDeck.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,14 @@
 		E917D67B203D9CFE00C8F87B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E917D67D203D9CFE00C8F87B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E917D67E203D9CFE00C8F87B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E917D689203DAC0A00C8F87B /* PMCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PMCard.h; path = Matchismo/Models/PMCard.h; sourceTree = SOURCE_ROOT; };
+		E917D68A203DAC0A00C8F87B /* PMCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PMCard.m; path = Matchismo/Models/PMCard.m; sourceTree = SOURCE_ROOT; };
+		E917D68C203DAC6000C8F87B /* PMPlayingCard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PMPlayingCard.h; path = Matchismo/Models/PMPlayingCard.h; sourceTree = SOURCE_ROOT; };
+		E917D68D203DAC6000C8F87B /* PMPlayingCard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PMPlayingCard.m; path = Matchismo/Models/PMPlayingCard.m; sourceTree = SOURCE_ROOT; };
+		E917D68F203DAFED00C8F87B /* PMDeck.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PMDeck.h; path = Matchismo/Models/PMDeck.h; sourceTree = SOURCE_ROOT; };
+		E917D690203DAFED00C8F87B /* PMDeck.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PMDeck.m; path = Matchismo/Models/PMDeck.m; sourceTree = SOURCE_ROOT; };
+		E917D692203DB20800C8F87B /* PMPlayingCardDeck.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PMPlayingCardDeck.h; path = Matchismo/Models/PMPlayingCardDeck.h; sourceTree = SOURCE_ROOT; };
+		E917D693203DB20800C8F87B /* PMPlayingCardDeck.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PMPlayingCardDeck.m; path = Matchismo/Models/PMPlayingCardDeck.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,17 +70,34 @@
 		E917D66E203D9CFE00C8F87B /* Matchismo */ = {
 			isa = PBXGroup;
 			children = (
-				E917D66F203D9CFE00C8F87B /* AppDelegate.h */,
-				E917D670203D9CFE00C8F87B /* AppDelegate.m */,
 				E917D672203D9CFE00C8F87B /* ViewController.h */,
 				E917D673203D9CFE00C8F87B /* ViewController.m */,
 				E917D675203D9CFE00C8F87B /* Main.storyboard */,
 				E917D678203D9CFE00C8F87B /* Assets.xcassets */,
+				E917D688203DAA2F00C8F87B /* Models */,
+				E917D66F203D9CFE00C8F87B /* AppDelegate.h */,
+				E917D670203D9CFE00C8F87B /* AppDelegate.m */,
 				E917D67A203D9CFE00C8F87B /* LaunchScreen.storyboard */,
 				E917D67D203D9CFE00C8F87B /* Info.plist */,
 				E917D67E203D9CFE00C8F87B /* main.m */,
 			);
 			path = Matchismo;
+			sourceTree = "<group>";
+		};
+		E917D688203DAA2F00C8F87B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E917D689203DAC0A00C8F87B /* PMCard.h */,
+				E917D68A203DAC0A00C8F87B /* PMCard.m */,
+				E917D68C203DAC6000C8F87B /* PMPlayingCard.h */,
+				E917D68D203DAC6000C8F87B /* PMPlayingCard.m */,
+				E917D68F203DAFED00C8F87B /* PMDeck.h */,
+				E917D690203DAFED00C8F87B /* PMDeck.m */,
+				E917D692203DB20800C8F87B /* PMPlayingCardDeck.h */,
+				E917D693203DB20800C8F87B /* PMPlayingCardDeck.m */,
+			);
+			name = Models;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +173,10 @@
 			files = (
 				E917D674203D9CFE00C8F87B /* ViewController.m in Sources */,
 				E917D67F203D9CFE00C8F87B /* main.m in Sources */,
+				E917D694203DB20800C8F87B /* PMPlayingCardDeck.m in Sources */,
+				E917D68E203DAC6000C8F87B /* PMPlayingCard.m in Sources */,
+				E917D691203DAFED00C8F87B /* PMDeck.m in Sources */,
+				E917D68B203DAC0A00C8F87B /* PMCard.m in Sources */,
 				E917D671203D9CFE00C8F87B /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -284,7 +317,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = PM.Matchismo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -298,7 +331,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = PM.Matchismo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
