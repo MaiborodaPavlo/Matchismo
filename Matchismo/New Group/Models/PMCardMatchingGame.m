@@ -13,11 +13,9 @@
 @interface PMCardMatchingGame()
 
 @property (assign, nonatomic, readwrite) NSInteger score;
+@property (strong, nonatomic, readwrite) NSString *roundTextPresentation;
 @property (strong, nonatomic) NSMutableArray *cards; // of Card
 @property (strong, nonatomic) NSMutableArray *chosenCards; // of Card
-
-
-@property (assign, nonatomic) NSInteger mode;
 
 @end
 
@@ -32,13 +30,12 @@ static const int COST_TO_CHOOSE = 1;
 
 @implementation PMCardMatchingGame
 
-- (instancetype)initWithCardCount:(NSUInteger)count usingDeck:(PMDeck *)deck mode: (NSInteger) mode {
+- (instancetype)initWithCardCount:(NSUInteger)count usingDeck:(PMDeck *)deck {
     
     self = [super init];
     
     if (self) {
         for (int i = 0; i < count; i++) {
-            self.mode = mode;
             PMCard *card = [deck drawRandomCard];
             if (card) {
                 [self.cards addObject: card];
@@ -63,12 +60,15 @@ static const int COST_TO_CHOOSE = 1;
     
     PMCard *card = [self cardAtIndex: index];
     
+    self.roundTextPresentation = [NSString stringWithFormat: @"%@", card.contents];
+    
     switch (self.mode) {
             
         case PMGameTypeTwoCards:
             if (!card.isMatched) {
                 if (card.isChosen) {
                     card.chosen = NO;
+                    self.roundTextPresentation = @"";
                 } else {
                     // match against another card
                     for (PMCard *otherCard in self.cards) {
@@ -78,9 +78,11 @@ static const int COST_TO_CHOOSE = 1;
                                 self.score += matchScore * MATCH_BONUS;
                                 card.matched = YES;
                                 otherCard.matched = YES;
+                                self.roundTextPresentation = [NSString stringWithFormat: @"%@ & %@ matched! %d point bonuses", card.contents, otherCard.contents, matchScore * MATCH_BONUS];
                             } else {
                                 self.score -= MISMATCH_PENALTY;
                                 otherCard.chosen = NO;
+                                self.roundTextPresentation = [NSString stringWithFormat: @"%@ & %@ don’t matched! %d point penalty", card.contents, otherCard.contents, MISMATCH_PENALTY];
                             }
                             break;
                         }
@@ -106,6 +108,9 @@ static const int COST_TO_CHOOSE = 1;
                             
                             if (![self.chosenCards containsObject: otherCard]) {
                                 [self.chosenCards addObject: otherCard];
+                                
+                                self.roundTextPresentation = [self.roundTextPresentation stringByAppendingString: otherCard.contents];
+                                
                             } else {
                                 continue;
                             }
@@ -120,11 +125,13 @@ static const int COST_TO_CHOOSE = 1;
                                     for (PMCard *chosenCard in self.chosenCards) {
                                         chosenCard.matched = YES;
                                     }
+                                    self.roundTextPresentation = [NSString stringWithFormat: @"Matched! %d point bonuses", matchScore * MATCH_BONUS];
                                 } else {
                                     self.score -= MISMATCH_PENALTY;
                                     for (PMCard *chosenCard in self.chosenCards) {
                                         chosenCard.chosen = NO;
                                     }
+                                    self.roundTextPresentation = [NSString stringWithFormat: @"Don’t match! %d point penalty", MISMATCH_PENALTY];
                                 }
                                 
                                 [self.chosenCards removeAllObjects];

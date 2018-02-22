@@ -12,12 +12,13 @@
 
 @interface PMCardMatchingGame : NSObject
 
-@property (nonatomic, readonly) NSInteger score;
+@property (assign, nonatomic, readonly) NSInteger score;
+@property (strong, nonatomic, readonly) NSString *roundTextPresentation;
+@property (assign, nonatomic) NSInteger mode;
 
 // designated initializer
 - (instancetype)initWithCardCount: (NSUInteger) count
-                        usingDeck: (PMDeck *) deck
-                             mode: (NSInteger) mode;
+                        usingDeck: (PMDeck *) deck;
 
 - (void)chooseCardAtIndex:(NSUInteger)index;
 - (PMCard *)cardAtIndex:(NSUInteger)index;

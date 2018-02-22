@@ -17,6 +17,7 @@
 @property (nonatomic, strong) PMCardMatchingGame *game;
 
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UILabel *textLabel;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *stateControl;
 
@@ -43,14 +44,20 @@
     self.stateControl.enabled = YES;
 }
 
+- (IBAction) changeModeAction: (UISegmentedControl *) sender {
+    
+    self.game = nil;
+    [self updateUI];
+}
+
 #pragma mark - Setters&Getters
 
 - (PMCardMatchingGame *) game {
     
     if (!_game) {
         _game = [[PMCardMatchingGame alloc] initWithCardCount: [self.cardButtons count]
-                                                    usingDeck: [self createDeck]
-                                                         mode: self.stateControl.selectedSegmentIndex];
+                                                    usingDeck: [self createDeck]];
+        _game.mode = self.stateControl.selectedSegmentIndex;
     }
     return _game;
 }
@@ -74,6 +81,7 @@
         cardButton.enabled = !card.matched;
     }
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", self.game.score];
+    self.textLabel.text = self.game.roundTextPresentation;
 }
 
 - (NSString *) titleForCard: (PMCard *) card {
