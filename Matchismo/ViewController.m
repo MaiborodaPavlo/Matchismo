@@ -25,10 +25,16 @@
 
 #pragma mark - Actions
 
-- (IBAction) touchCardAction: (UIButton *) sender
-{
+- (IBAction) touchCardAction: (UIButton *) sender {
+    
     NSUInteger cardIndex = [self.cardButtons indexOfObject: sender];
     [self.game chooseCardAtIndex: cardIndex];
+    [self updateUI];
+}
+
+- (IBAction) refreshAction: (UIButton *) sender {
+    
+    self.game = nil;
     [self updateUI];
 }
 
@@ -50,8 +56,8 @@
     return [[PMPlayingCardDeck alloc] init];
 }
 
-- (void)updateUI
-{
+- (void) updateUI {
+    
     for (UIButton *cardButton in self.cardButtons) {
         NSUInteger cardIndex = [self.cardButtons indexOfObject: cardButton];
         PMCard *card = [self.game cardAtIndex: cardIndex];
@@ -64,13 +70,13 @@
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", self.game.score];
 }
 
-- (NSString *) titleForCard: (PMCard *) card
-{
+- (NSString *) titleForCard: (PMCard *) card {
+    
     return card.chosen ? card.contents : @"";
 }
 
-- (UIImage *) backgroundImageForCard: (PMCard *) card
-{
+- (UIImage *) backgroundImageForCard: (PMCard *) card {
+    
     return [UIImage imageNamed: card.chosen ? @"cardFront" : @"cardBack"];
 }
 
