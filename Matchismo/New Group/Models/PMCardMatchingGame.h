@@ -15,8 +15,9 @@
 @property (nonatomic, readonly) NSInteger score;
 
 // designated initializer
-- (instancetype)initWithCardCount:(NSUInteger)count
-                        usingDeck:(PMDeck *)deck;
+- (instancetype)initWithCardCount: (NSUInteger) count
+                        usingDeck: (PMDeck *) deck
+                             mode: (NSInteger) mode;
 
 - (void)chooseCardAtIndex:(NSUInteger)index;
 - (PMCard *)cardAtIndex:(NSUInteger)index;

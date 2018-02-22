@@ -56,8 +56,8 @@
     return [ranks[self.rank] stringByAppendingString: self.suit];
 }
 
-- (int)match:(NSArray *)otherCards
-{
+- (int) match: (NSArray *) otherCards {
+    
     int score = 0;
     
     if ([otherCards count] == 1) {
@@ -67,6 +67,22 @@
         } else if (self.rank == otherCard.rank) {
             score = 4;
         }
+    } else if ([otherCards count] == 2) {
+        
+        for (PMPlayingCard *otherCard in otherCards) {
+            if ([self.suit isEqualToString: otherCard.suit]) {
+                score += 1;
+            } else if (self.rank == otherCard.rank) {
+                score += 4;
+            }
+        }
+        
+        if ([[[otherCards firstObject] suit] isEqualToString: [[otherCards lastObject] suit]]) {
+            score += 1;
+        } else if ([[otherCards firstObject] rank] == [[otherCards lastObject] rank]) {
+            score += 4;
+        }
+        
     }
     
     return score;

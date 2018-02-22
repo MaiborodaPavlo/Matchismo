@@ -18,6 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *stateControl;
 
 @end
 
@@ -26,6 +27,8 @@
 #pragma mark - Actions
 
 - (IBAction) touchCardAction: (UIButton *) sender {
+    
+    self.stateControl.enabled = NO;
     
     NSUInteger cardIndex = [self.cardButtons indexOfObject: sender];
     [self.game chooseCardAtIndex: cardIndex];
@@ -36,6 +39,8 @@
     
     self.game = nil;
     [self updateUI];
+    
+    self.stateControl.enabled = YES;
 }
 
 #pragma mark - Setters&Getters
@@ -44,7 +49,8 @@
     
     if (!_game) {
         _game = [[PMCardMatchingGame alloc] initWithCardCount: [self.cardButtons count]
-                                                    usingDeck: [self createDeck]];
+                                                    usingDeck: [self createDeck]
+                                                         mode: self.stateControl.selectedSegmentIndex];
     }
     return _game;
 }
